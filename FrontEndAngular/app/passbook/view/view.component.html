@@ -1,0 +1,21 @@
+<table align=center class="table table-striped text-white table-bordered">
+	<tr>
+		<th>Transaction ID</th>
+		<th>Amount</th>
+		<th>Date of Transaction</th>
+		<th>Type</th>
+                <th>Account ID</th>
+		<th>Slip No</th>
+		<th>Cheque No</th>
+		
+	</tr>
+	<tr *ngFor="let t of trans">
+		<td>{{t.transId}}</td>
+		<td>{{t.transactionAmount}}</td>
+		<td>{{t.transactionDate}}</td>
+		<td>{{t.transactionType}}</td>
+		<td>{{t.account.accountNo}}</td>
+		<td>{{t.slipNo}}</td>
+		<td>{{t.chequeDetails.chequeId}}</td>
+	</tr> 
+</table>

@@ -1,0 +1,33 @@
+<div class="form-group">
+	<h2 class="text-white" align=center>Get Fixed Deposit Details</h2>
+</div>
+<form #name="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h4 class="text-white">Holder Id</h4></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #dhi="ngModel" pattern="[0-9]{4}" required [class.is-invalid]="dhi.touched && dhi.invalid " name="custId" class="form-control" [(ngModel)]="depositHolderId">
+        				<div *ngIf="dhi.errors && dhi.touched">
+            					<small class="text-danger"    *ngIf="dhi.errors.required">Fixed Deposit Holder Id is required</small>
+            					<small class="text-danger"     *ngIf="dhi.errors.pattern">Fixed Deposit Holder Id must be 5 digits</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="name.invalid" class="btn btn-primary text-white" (click)="getFixedDepositDetails()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>

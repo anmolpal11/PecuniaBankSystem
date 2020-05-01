@@ -1,0 +1,125 @@
+<div class="form-group">
+	<h2 align=center class="text-white">Debit Using Cheque</h2>
+</div>
+<form #ccd="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h5 class="text-white">Account Id</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #acc="ngModel" pattern="[0-9]{12}" required [class.is-invalid]="acc.touched && acc.invalid " name="accId" class="form-control" [(ngModel)]="accId">
+        				<div *ngIf="acc.errors && acc.touched">
+            					<small class="text-danger"    *ngIf="acc.errors.required">Account Id is required</small>
+            					<small class="text-danger"     *ngIf="acc.errors.pattern">Account Id must be 12 digits</small>
+       				 	</div>
+				</div>
+            </td>  
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Amount</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=number min=1 max=10000 required #amo="ngModel" [class.is-invalid]="amo.touched && amo.invalid " name="amount" class="form-control" [(ngModel)]="cheque.chequeAmount">
+        				<div *ngIf="amo.errors && amo.touched">
+            					<small class="text-danger"    *ngIf="amo.errors.required">Amount is required</small>
+       				 	</div>
+				</div>
+            </td> 
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Cheque Id</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #cid="ngModel" pattern="[0-9]{5}" required [class.is-invalid]="cid.touched && cid.invalid " name="chequeid" class="form-control" [(ngModel)]="cheque.chequeId">
+        				<div *ngIf="cid.errors && cid.touched">
+            					<small class="text-danger"    *ngIf="cid.errors.required">Cheque Id is required</small>
+            					<small class="text-danger"     *ngIf="cid.errors.pattern">Cheque Id must be 5 digits</small>
+       				 	</div>
+				</div>
+            </td>   
+        </tr>
+        <tr>
+			<th><h5 class="text-white">Cheque no</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #cno="ngModel" pattern="[0-9]{5}" required [class.is-invalid]="cno.touched && cno.invalid " name="chequeno" class="form-control" [(ngModel)]="cheque.chequeNo">
+        				<div *ngIf="cno.errors && cno.touched">
+            					<small class="text-danger"    *ngIf="cno.errors.required">Cheque no is required</small>
+            					<small class="text-danger"     *ngIf="cno.errors.pattern">Cheque no must be 5 digits</small>
+       				 	</div>
+				</div>
+            </td>   
+        </tr>
+        <tr>
+			<th><h5 class="text-white">Transfer Account Id</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #cano="ngModel" pattern="[0-9]{12}" required [class.is-invalid]="cano.touched && cano.invalid " name="chequeaccno" class="form-control" [(ngModel)]="cheque.chequeAccountNo">
+        				<div *ngIf="cano.errors && cano.touched">
+            					<small class="text-danger"    *ngIf="cano.errors.required">Account no is required</small>
+            					<small class="text-danger"     *ngIf="cano.errors.pattern">Account no must be 5 digits</small>
+       				 	</div>
+				</div>
+            </td>   
+        </tr>
+        <tr>
+			<th><h5 class="text-white">IFSC Code</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=text #ifsc="ngModel" required [class.is-invalid]="ifsc.touched && ifsc.invalid " name="ifsc" class="form-control" [(ngModel)]="cheque.bank.ifscCode">
+        				<div *ngIf="ifsc.errors && ifsc.touched">
+            					<small class="text-danger"    *ngIf="ifsc.errors.required">IFSC code is required</small>
+       				 	</div>
+				</div>
+            </td>   
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Bank Name</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=text #bn="ngModel" required [class.is-invalid]="bn.touched && bn.invalid " name="bankName" class="form-control" [(ngModel)]="cheque.bank.bankName">
+        				<div *ngIf="bn.errors && bn.touched">
+            					<small class="text-danger"    *ngIf="bn.errors.required">Bank Name is required</small>
+       				 	</div>
+				</div>
+            </td>   
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Branch</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=text #b="ngModel" required [class.is-invalid]="b.touched && b.invalid " name="branch" class="form-control" [(ngModel)]="cheque.bank.branch">
+        				<div *ngIf="b.errors && b.touched">
+            					<small class="text-danger"    *ngIf="b.errors.required">Branch Name is required</small>
+       				 	</div>
+				</div>
+            </td>   
+        </tr>
+        <tr>
+        <tr>
+			<th><h5 class="text-white">Cheque Issued Date</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=date #cd="ngModel" required [class.is-invalid]="cd.touched && cd.invalid " name="chequedate" class="form-control" [(ngModel)]="cheque.chequeDated">
+        				<div *ngIf="cd.errors && cd.touched">
+            					<small class="text-danger"    *ngIf="cd.errors.required">Cheque dated is required</small>
+       				 	</div>
+				</div>
+            </td>   
+        </tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="ccd.invalid" class="btn btn-primary text-white" (click)="debitUsingCheque()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>

@@ -1,0 +1,66 @@
+<div class="form-group">
+	<h2 class="text-white" align=center>Fixed Deposit</h2>
+</div>
+<form #name="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h4 class="text-white">Customer Id</h4></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #cust="ngModel" pattern="[0-9]{5}" required [class.is-invalid]="cust.touched && cust.invalid " name="custId" class="form-control" [(ngModel)]="custId">
+        				<div *ngIf="cust.errors && cust.touched">
+            					<small class="text-danger"    *ngIf="cust.errors.required">Customer Id is required</small>
+            					<small class="text-danger"     *ngIf="cust.errors.pattern">Customer Id must be 5 digits</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><h4 class="text-white">Amount</h4></th>
+			<td>
+				<div class="form-group">		
+					<input type=number #amo="ngModel" required [class.is-invalid]="amo.touched && amo.invalid" class="form-control" name="amount" [(ngModel)]="amount">
+					<div *ngIf="amo.errors && amo.touched">
+            					<small class="text-danger"    *ngIf="amo.errors.required">Amount is required</small>
+       				 	</div>
+				</div>
+			</td>
+        </tr>
+        <tr>
+			<th><h4 class="text-white">Duration</h4></th>
+			<td>
+				<div class="form-group">		
+					<input type=number #dur="ngModel" min=1 max=10 required [class.is-invalid]="dur.touched && dur.invalid" class="form-control" name="duration" [(ngModel)]="duration">
+					<div *ngIf="dur.errors && dur.touched">
+            					<small class="text-danger"    *ngIf="dur.errors.required">Duration is required</small>
+       				 	</div>
+				</div>
+			</td>
+        </tr>
+        <tr>
+			<th><h4 class="text-white">Rate Of Interest</h4></th>
+			<td>
+				<div class="form-group">		
+					<input type=number #roi="ngModel" min=1 max=5 required [class.is-invalid]="roi.touched && roi.invalid" class="form-control" name="rate" [(ngModel)]="rate">
+					<div *ngIf="roi.errors && roi.touched">
+            					<small class="text-danger"    *ngIf="roi.errors.required">Rate of Interest is required</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="name.invalid" class="btn btn-primary text-white" (click)="addFixedDeposit()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>

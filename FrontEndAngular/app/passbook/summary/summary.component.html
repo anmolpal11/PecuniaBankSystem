@@ -1,0 +1,49 @@
+<div class="form-group">
+	<h2 align=center class="text-white">Account Summary</h2>
+</div>
+<form #summ="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h5 class="text-white">Account Id</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #acc="ngModel" pattern="[0-9]{12}" required [class.is-invalid]="acc.touched && acc.invalid " name="accId" class="form-control" [(ngModel)]="accId">
+        				<div *ngIf="acc.errors && acc.touched">
+            					<small class="text-danger"    *ngIf="acc.errors.required">Account Id is required</small>
+            					<small class="text-danger"     *ngIf="acc.errors.pattern">Account Id must be 12 digits</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Start Date</h5></th>
+			<td>
+				<div class="form-group">		
+					<input type=date required class="form-control" name="sd" [(ngModel)]="startDate">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><h5 class="text-white">End Date</h5></th>
+			<td>
+				<div class="form-group">		
+					<input type=date  required  class="form-control" name="ed" [(ngModel)]="endDate">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="summ.invalid" class="btn btn-primary text-white" (click)="getAccountSummary()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>

@@ -1,0 +1,45 @@
+<div class="form-group">
+	<h2 class="text-white" align=center>Passbook Update</h2>
+</div>
+<form #name="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h4 class="text-white">Account Id</h4></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #acc="ngModel" pattern="[0-9]{12}" required [class.is-invalid]="acc.touched && acc.invalid " name="accId" class="form-control" [(ngModel)]="accId">
+        				<div *ngIf="acc.errors && acc.touched">
+            					<small class="text-danger"    *ngIf="acc.errors.required">Account Id is required</small>
+            					<small class="text-danger"     *ngIf="acc.errors.pattern">Account Id must be 12 digits</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><h4 class="text-white">Last Transaction</h4></th>
+			<td>
+				<div class="form-group">		
+					<input type="tel" #trans="ngModel" pattern="[0-9]{5}" required [class.is-invalid]="trans.touched && trans.invalid" class="form-control" name="transId" [(ngModel)]="transId">
+					<div *ngIf="trans.errors && trans.touched">
+            					<small class="text-danger"    *ngIf="trans.errors.required">Last Transaction Id is required</small>
+            					<small class="text-danger"     *ngIf="trans.errors.pattern">Transaction Id must be 5 digits</small>
+       				 	</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="name.invalid" class="btn btn-primary text-white" (click)="getPassbookUpdates()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>

@@ -1,0 +1,56 @@
+<div class="form-group">
+	<h2 align=center class="text-white">Debit Using Slip</h2>
+</div>
+<form #dus="ngForm">
+<div class="form-group">
+	<table align=center>
+		<tr>
+			<th><h5 class="text-white">Account Id</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #acc="ngModel" pattern="[0-9]{12}" required [class.is-invalid]="acc.touched && acc.invalid " name="accId" class="form-control" [(ngModel)]="accId">
+        				<div *ngIf="acc.errors && acc.touched">
+            					<small class="text-danger"    *ngIf="acc.errors.required">Account Id is required</small>
+            					<small class="text-danger"     *ngIf="acc.errors.pattern">Account Id must be 12 digits</small>
+       				 	</div>
+				</div>
+            </td>   
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Amount</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type=number min=1 max=10000 required #amo="ngModel" [class.is-invalid]="amo.touched && amo.invalid " name="amount" class="form-control" [(ngModel)]="amount">
+        				<div *ngIf="amo.errors && amo.touched">
+            					<small class="text-danger"    *ngIf="amo.errors.required">Amount is required</small>
+       				 	</div>
+				</div>
+            </td> 
+		</tr>
+		<tr>
+			<th><h5 class="text-white">Slip no</h5></th>
+			<td>
+				<div class="form-group">
+        				<input type="tel" #sno="ngModel" pattern="[0-9]{5}" required [class.is-invalid]="sno.touched && sno.invalid " name="slipno" class="form-control" [(ngModel)]="slipno">
+        				<div *ngIf="sno.errors && sno.touched">
+            					<small class="text-danger"    *ngIf="sno.errors.required">Slip no is required</small>
+            					<small class="text-danger"     *ngIf="sno.errors.pattern">Slip no must be 5 digits</small>
+       				 	</div>
+				</div>
+            </td>   
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+				<input type=submit value="Submit" [disabled]="dus.invalid" class="btn btn-primary text-white" (click)="debitUsingSlip()">
+				</div>
+			</td>
+			<td>
+				<div class="form-group">
+					<input type=reset value="Cancel" class="btn btn-warning text-white">
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
