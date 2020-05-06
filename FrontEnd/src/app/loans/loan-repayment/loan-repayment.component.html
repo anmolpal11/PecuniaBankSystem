@@ -1,0 +1,110 @@
+<!--<h1 style="font-size:35" class="text-white" align=center>LOAN REPAYMENT</h1>
+<div class="container">
+    <form #create="ngForm">
+	<table class="table table-dark table-borderless">
+          <tr>
+               <th class="text-white"><h5>Loan Pay Id</h5></th>
+               <td><input type=text class="form-control" name="loan-repayment.loanPayId" [(ngModel)]="loanRepayment.loanPayId" placeholder="Enter Loan Pay Id" required/></td>
+          </tr>
+	  <tr>
+               <th class="text-white"><h5>Sanctioned Loan Id</h5></th>
+               <td><input type=text class="form-control" name="loan-repayment.sanctionedLoan.sanctionId" [(ngModel)]="loanRepayment.sanctionedLoan.sanctionId" placeholder="Enter Sanc Loan Id" required/></td>
+          </tr>
+	  <tr>
+               <th class="text-white"><h5>Amount</h5></th>
+               <td><input type=text class="form-control" name="loan-repayment.amount" [(ngModel)]="loanRepayment.amount" placeholder="Enter Amount" required/></td>
+          </tr>
+	  <tr>
+           <th class="text-white"><h5>Pay Date</h5></th>
+               <td><input type=text class="form-control" name="loan-repayment.payDate" [(ngModel)]="loanRepayment.payDate" placeholder="Enter pay date" required/></td>
+          </tr>
+	  <tr>
+		<td><button type="submit" class="btn btn-info" (click)="insertLoanRePayment()">AddLoanRePayment</button></td>
+   		<td><button type="submit" class="btn btn-info" (click)="getLoanRePayment()">GetLoanRePayment</button></td>
+	  </tr>
+	  <tr>
+	       <td><button type="submit" class="btn btn-info" (click)="deleteLoanRePayment()">DeleteLoanRePayment</button></td>
+	       <td> <button type="reset" class="btn btn-danger">Cancel</button></td>
+        </table>
+    </form>
+</div>-->
+
+<h1 style="font-size:35" align=center class="text-white">LOAN REPAYMENT</h1>
+<div class="container">
+    <form #create="ngForm">
+	<table class="table table-dark table-borderless">
+          <tr>
+               <th class="text-white"><h5>Loan Pay Id</h5></th>
+               <td>
+                    <div class="form-group">
+                         <input type="tel" pattern="^\d{3,5}$" required #payId="ngModel" [class.is-invalid]="payId.touched && payId.invalid " name="payId" class="form-control" [(ngModel)]="loanRepayment.loanPayId">
+                         <div *ngIf="payId.errors && payId.touched">
+                                 <small class="text-danger"    *ngIf="payId.errors.required">Loan Pay ID is required</small>
+                                 <small class="text-danger"     *ngIf="payId.errors.pattern">Loan Pay ID must be 3 to 5 digits</small>
+                         </div>
+                     </div>
+               </td>
+          </tr>
+	  <tr>
+               <th class="text-white"><h5>Sanctioned Loan Id</h5></th>
+               <td>
+                    <div class="form-group">
+                         <input type="tel" pattern="^\d{3,5}$" required #sanctionId="ngModel" [class.is-invalid]="sanctionId.touched && sanctionId.invalid " name="sanctionId" class="form-control" [(ngModel)]="loanRepayment.sanctionedLoan.sanctionId">
+                         <div *ngIf="sanctionId.errors && sanctionId.touched">
+                                 <small class="text-danger"    *ngIf="sanctionId.errors.required">sanction ID is required</small>
+                                 <small class="text-danger"     *ngIf="sanctionId.errors.pattern">sanction ID must be 3 to 5 digits</small>
+                         </div>
+                     </div>
+               </td>
+          </tr>
+	  <tr>
+               <th class="text-white"><h5>Amount</h5></th>
+               <td>
+                    <div class="form-group">
+                         <input type="text" class="form-control" #amount="ngModel" name="amount" [(ngModel)]="loanRepayment.amount" [required]="true" [class.is-invalid]="amount.invalid && amount.touched">
+                         <div *ngIf="amount.errors && amount.touched">
+                             <small class="text-danger" *ngIf="amount.errors.required">Please enter Amount</small>
+                             <small class="text-danger" *ngIf="amount.errors.pattern">Amount should contain only digits</small>
+                         </div>
+                     </div>
+               </td>
+          </tr>
+	  <tr>
+           <th class="text-white"><h5>Pay Date</h5></th>
+               <td>
+                    <div class="form-group">
+                         <input type="date" required class="form-control" #pay="ngModel" name="paydate" [(ngModel)]="loanRepayment.payDate" [required]="true" [class.is-invalid]="pay.invalid && pay.touched">
+                         <div *ngIf="pay.errors && pay.touched">
+                             <small class="text-danger" *ngIf="pay.errors.required">Please enter Paying Date</small>
+                         </div>
+                     </div>
+         
+               </td>
+          </tr>
+          <tr>
+          <td>
+               <div class="form-group">
+                   <input type=submit value="AddLoanRePayment" [disabled]="create.invalid" class="btn btn-primary text-white" (click)="insertLoanRePayment()">
+               </div>
+          </td>
+          <td>
+               <div class="form-group">
+                   <input type=submit value="GetLoanRePayment"  [disabled]="payId.invalid" class="btn btn-primary text-white" (click)="getLoanRePayment()">
+               </div>
+          </td>
+          </tr>
+          <tr>
+          <td>
+               <div class="form-group">
+                   <input type=submit value="DeletetLoanRePayment" [disabled]="payId.invalid" class="btn btn-primary text-white" (click)="deleteLoanRePayment()">
+               </div>
+          </td>
+          <td>
+               <div class="form-group">
+                    <input type=reset value="Cancel" class="btn btn-warning text-white">
+               </div>
+          </td>
+          </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,127 @@
+<h1 style="font-size:35" align=center class="text-white">SANCTIONED LOANS</h1>
+   <div class="container">
+       <form #cc="ngForm">
+	        <table class="table table-dark table-borderless">
+	           <tr>
+                <th class="text-white"><h5>Sanction Id</h5></th>
+                <td>
+                  <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #sanctionId="ngModel" [class.is-invalid]="sanctionId.touched && sanctionId.invalid " name="sanctionId" class="form-control" [(ngModel)]="sanctionedLoans.sanctionId">
+                    <div *ngIf="sanctionId.errors && sanctionId.touched">
+                            <small class="text-danger"    *ngIf="sanctionId.errors.required">sanction ID is required</small>
+                            <small class="text-danger"     *ngIf="sanctionId.errors.pattern">sanction ID must be 3 to 5 digits</small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+	            <tr>
+                <th class="text-white"><h5>Customer Id</h5></th>
+                <td>
+                  <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #custId="ngModel" [class.is-invalid]="custId.touched && custId.invalid " name="custId" class="form-control" [(ngModel)]="sanctionedLoans.customer.customerId">
+                    <div *ngIf="custId.errors && custId.touched">
+                            <small class="text-danger"    *ngIf="custId.errors.required">Customer ID is required</small>
+                            <small class="text-danger"     *ngIf="custId.errors.pattern">Customer ID must be 3 to 5 digits</small>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+ 	           <tr>
+                <th class="text-white"><h5>Loan Id</h5></th>
+                <td>
+                    <div class="form-group">
+                      <input type="tel" pattern="^\d{3,5}$" required #loanId="ngModel" [class.is-invalid]="loanId.touched && loanId.invalid " name="loanId" class="form-control" [(ngModel)]="sanctionedLoans.loan.loanId">
+                      <div *ngIf="loanId.errors && loanId.touched">
+                        <small class="text-danger"    *ngIf="loanId.errors.required">Loan ID is required</small>
+                        <small class="text-danger"     *ngIf="loanId.errors.pattern">Loan ID must be 3 to 5 digits</small>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+	            <tr>
+                <th class="text-white"><h5>Amount Sanctioned</h5></th>
+                <td>
+                  <div class="form-group">
+                  <input type="text" class="form-control" #amount="ngModel" name="amount" [(ngModel)]="sanctionedLoans.sanctionedAmount" [required]="true" [class.is-invalid]="amount.invalid && amount.touched">
+                    <div *ngIf="amount.errors && amount.touched">
+                          <small class="text-danger" *ngIf="amount.errors.required">Please enter Amount</small>
+                          <small class="text-danger" *ngIf="amount.errors.pattern">Amount should contain only digits</small>
+                    </div>
+                  </div>
+              </tr>
+	            <tr>
+                  <th class="text-white"><h5>Loan Emi</h5></th>
+                  <td>
+                    <div class="form-group">
+                      <input type="text" class="form-control" #emi="ngModel" name="emi" [(ngModel)]="sanctionedLoans.loanEmi" [required]="true" [class.is-invalid]="emi.invalid && emi.touched">
+                      <div *ngIf="emi.errors && emi.touched">
+                         <small class="text-danger" *ngIf="emi.errors.required">Please enter Loan Emi</small>
+                         <small class="text-danger" *ngIf="emi.errors.pattern">EMI should contain only digits</small>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+	            <tr>
+                 <th class="text-white"><h5>Loan Tenure</h5></th>
+                 <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" #tenure="ngModel" name="tenure" [(ngModel)]="sanctionedLoans.loanTenure" [required]="true" [class.is-invalid]="tenure.invalid && tenure.touched">
+                      <div *ngIf="tenure.errors && tenure.touched">
+                         <small class="text-danger" *ngIf="tenure.errors.required">Please enter Tenure</small>
+                         <small class="text-danger" *ngIf="tenure.errors.pattern">Tenure should contain only digits</small>
+                      </div>
+                  </div>
+                 </td>
+              </tr>
+	            <tr>
+                 <th class="text-white"><h5>Loan Issued Date</h5></th>
+                 <td>
+                  <div class="form-group">
+                    <input type="date" required class="form-control" #issue="ngModel" name="issuedate" [(ngModel)]="sanctionedLoans.loanIssuedDate" [required]="true" [class.is-invalid]="issue.invalid && issue.touched">
+                    <div *ngIf="issue.errors && issue.touched">
+                        <small class="text-danger" *ngIf="issue.errors.required">Please enter Issue Date</small>
+                    </div>
+                  </div>
+                 </td>
+              </tr>
+	            <tr>
+               <th class="text-white"><h5>Status</h5></th>
+               <td>
+                <div class="form-group">
+                  <input type=text pattern="[A-Za-z]{5,20}" required #status="ngModel" [class.is-invalid]="status.touched && status.invalid " name="status" class="form-control" [(ngModel)]="sanctionedLoans.status">
+                  <div *ngIf="status.errors && status.touched">
+                          <small class="text-danger"    *ngIf="status.errors.required">Status is required</small>
+                          <small class="text-danger"     *ngIf="status.errors.pattern">Status must be atleast 5 characters</small>
+                  </div>
+                </div>
+               </td>
+              </tr>    
+              <tr>     
+                <td>
+                 <div class="form-group">
+                     <input type=submit value="AddSanctionedLoans" [disabled]="cc.invalid" class="btn btn-primary text-white" (click)="insertSanctionedLoans()">
+                 </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                     <input type=submit value="GetSanctionedLoans" [disabled]="sanctionId.invalid" class="btn btn-primary text-white" (click)="getSanctionedLoans()">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                     <input type=submit value="DeleteSanctionedLoans"  [disabled]="sanctionId.invalid" class="btn btn-primary text-white" (click)="deleteSanctionedLoans()">
+                  </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                      <input type=reset value="Cancel" class="btn btn-warning text-white">
+                    </div>
+                </td>
+              </tr>
+        </table>
+    </form>
+</div>
+        
+        

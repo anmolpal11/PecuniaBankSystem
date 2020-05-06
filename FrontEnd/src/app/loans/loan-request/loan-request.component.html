@@ -1,0 +1,249 @@
+<h1 style="font-size:35" class="text-white" align=center>LOAN REQUEST</h1>
+<div class="container">
+    <form #create="ngForm">
+	<table class="table table-dark table-borderless">
+        <tr>
+            <th class="text-white"><h5>Request ID</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #requestId="ngModel" [class.is-invalid]="requestId.touched && requestId.invalid " name="requestId" class="form-control" [(ngModel)]="loanRequest.requestId">
+                    <div *ngIf="requestId.errors && requestId.touched">
+                            <small class="text-danger"    *ngIf="requestId.errors.required">Request ID is required</small>
+                            <small class="text-danger"     *ngIf="requestId.errors.pattern">Request ID must be 3 to 5 digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Customer ID</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #custId="ngModel" [class.is-invalid]="custId.touched && custId.invalid " name="custId" class="form-control" [(ngModel)]="loanRequest.customer.customerId">
+                    <div *ngIf="custId.errors && custId.touched">
+                            <small class="text-danger"    *ngIf="custId.errors.required">Customer ID is required</small>
+                            <small class="text-danger"     *ngIf="custId.errors.pattern">Customer ID must be 3 to 5 digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Customer Name</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z]{5,30}" required #name="ngModel" [class.is-invalid]="name.touched && name.invalid " name="name" class="form-control" [(ngModel)]="loanRequest.customer.customerName">
+                    <div *ngIf="name.errors && name.touched">
+                            <small class="text-danger"    *ngIf="name.errors.required">Name is required</small>
+                            <small class="text-danger"     *ngIf="name.errors.pattern">Name must be atleast 5 characters</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Phone Number</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type="tel" pattern="^\d{10}$" required #contact="ngModel" [class.is-invalid]="contact.touched && contact.invalid " name="contact" class="form-control" [(ngModel)]="loanRequest.customer.phone">
+                    <div *ngIf="contact.errors && contact.touched">
+                            <small class="text-danger"    *ngIf="contact.errors.required">Contact Number is required</small>
+                            <small class="text-danger"     *ngIf="contact.errors.pattern">Contact Number should be 10 digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Email Id</h5></th>
+            <td>
+                <div class="form-group">
+					<input type="text" class="form-control" #email="ngModel" pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" [class.is-invalid]="email.invalid && email.touched" name="emailId" [(ngModel)]="loanRequest.customer.emailId" [required]="true">
+						<div *ngIf="email.touched &&  email.errors">
+							<small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+							<small class="text-danger" *ngIf="email.errors.pattern">Email must be of valid pattern	</small>
+						</div>
+				</div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Customer PAN</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="^[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}$" required #pan="ngModel"  [class.is-invalid]="pan.touched && pan.invalid " name="pan" class="form-control" [(ngModel)]="loanRequest.customer.customerPAN">
+                    <div *ngIf="pan.errors && pan.touched">
+                            <small class="text-danger"    *ngIf="pan.errors.required">PAN is required</small>
+                            <small class="text-danger"     *ngIf="pan.errors.pattern">PAN must be of length 10</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Address ID</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #addId="ngModel" [class.is-invalid]="addId.touched && addId.invalid " name="addId" class="form-control" [(ngModel)]="loanRequest.customer.address.addressId">
+                    <div *ngIf="addId.errors && addId.touched">
+                            <small class="text-danger"    *ngIf="addId.errors.required">Address ID is required</small>
+                            <small class="text-danger"     *ngIf="addId.errors.pattern">Address ID must be 3 to 5 digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>House No</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text required #hno="ngModel" [class.is-invalid]="hno.touched && hno.invalid " name="hno" class="form-control" [(ngModel)]="loanRequest.customer.address.hNo">
+                    <div *ngIf="hno.errors && hno.touched">
+                        <small class="text-danger"    *ngIf="hno.errors.required">HNo is required</small>
+                    </div>
+                </div>
+            </td> 
+        </tr>
+        <tr>
+            <th class="text-white" ><h5>Street</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z ]{5,20}" required #street="ngModel" [class.is-invalid]="street.touched && street.invalid " name="street" class="form-control" [(ngModel)]="loanRequest.customer.address.street">
+                    <div *ngIf="street.errors && street.touched">
+                        <small class="text-danger"    *ngIf="street.errors.required">Street is required</small>
+                        <small class="text-danger"     *ngIf="street.errors.pattern">Street must be valid</small>
+                    </div>
+                </div>
+            </td> 
+        </tr>
+        <tr>
+            <th class="text-white"><h5>City</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z ]{5,20}" required #city="ngModel" [class.is-invalid]="city.touched && city.invalid " name="city" class="form-control" [(ngModel)]="loanRequest.customer.address.city">
+                    <div *ngIf="city.errors && city.touched">
+                            <small class="text-danger"    *ngIf="city.errors.required">City name is required</small>
+                            <small class="text-danger"     *ngIf="city.errors.pattern">City name must be atleast 5 characters</small>
+                    </div>
+                </div>
+            </td> 
+        </tr>
+        <tr>
+            <th class="text-white"><h5>State</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z ]{5,20}" required #state="ngModel" [class.is-invalid]="state.touched && state.invalid " name="state" class="form-control" [(ngModel)]="loanRequest.customer.address.state">
+                    <div *ngIf="state.errors && state.touched">
+                            <small class="text-danger"    *ngIf="state.errors.required">State nameis required</small>
+                            <small class="text-danger"     *ngIf="state.errors.pattern">State name must be atleast 5 characters</small>
+                    </div>
+                </div>
+            </td> 
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Country</h5></th>
+            <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z ]{5,20}" required  #country="ngModel" [class.is-invalid]="country.touched && country.invalid " name="country" class="form-control" [(ngModel)]="loanRequest.customer.address.country">
+                    <div *ngIf="country.errors && country.touched">
+                            <small class="text-danger"    *ngIf="country.errors.required">Country name is required</small>
+                            <small class="text-danger"     *ngIf="country.errors.pattern">Country name must be atleast 5 characters</small>
+                    </div>
+                </div>
+            </td> 
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Request Date</h5></th>
+            <td>
+             <div class="form-group">
+               <input type="date" required class="form-control" #request="ngModel" name="requestdate" [(ngModel)]="loanRequest.requestDate" [required]="true" [class.is-invalid]="request.invalid && request.touched">
+               <div *ngIf="request.errors && request.touched">
+                   <small class="text-danger" *ngIf="request.errors.required">Please enter Request Date</small>
+               </div>
+             </div>
+            </td>
+         </tr>
+        <tr>
+            <th class="text-white"><h5>Customer Income</h5></th>
+            <td>
+                <div class="form-group">
+                 <input type="text" class="form-control" #income="ngModel" name="income" [(ngModel)]="loanRequest.customerIncome" [required]="true" [class.is-invalid]="income.invalid && income.touched">
+                   <div *ngIf="income.errors && income.touched">
+                     <small class="text-danger" *ngIf="income.errors.required">Please enter Income</small>
+                     <small class="text-danger" *ngIf="income.errors.pattern">Income should contain only digits</small>
+                   </div>
+                </div>
+             </td>
+     </tr>
+	    <tr>
+            <th class="text-white"><h5>Loan Id</h5></th>
+	        <td>
+                <div class="form-group">
+                    <input type="tel" pattern="^\d{3,5}$" required #loanId="ngModel" [class.is-invalid]="loanId.touched && loanId.invalid " name="loanId" class="form-control" [(ngModel)]="loanRequest.loan.loanId">
+                    <div *ngIf="loanId.errors && loanId.touched">
+                            <small class="text-danger"    *ngIf="loanId.errors.required">Loan ID is required</small>
+                            <small class="text-danger"     *ngIf="loanId.errors.pattern">Loan ID must be 3 to 5 digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Loan Type</h5></th>
+	        <td>
+                <div class="form-group">
+                    <input type=text pattern="[A-Za-z]{3,20}" required #loanType="ngModel" [class.is-invalid]="loanType.touched && loanType.invalid " name="loanType" class="form-control" [(ngModel)]="loanRequest.loan.loanType">
+                    <div *ngIf="loanType.errors && loanType.touched">
+                            <small class="text-danger"    *ngIf="loanType.errors.required">Loan Type is required</small>
+                            <small class="text-danger"     *ngIf="loanType.errors.pattern">Loan Type must be atleast 3 characters</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-white"><h5>Loan Roi</h5></th>
+	        <td>
+                <div class="form-group">
+                    <input type="text" class="form-control" #roi="ngModel" name="roi" [(ngModel)]="loanRequest.loan.loanRoi" [required]="true" [class.is-invalid]="roi.invalid && roi.touched">
+                    <div *ngIf="roi.errors && roi.touched">
+                       <small class="text-danger" *ngIf="roi.errors.required">Please enter Loan Roi</small>
+                       <small class="text-danger" *ngIf="roi.errors.pattern">ROI should contain only digits</small>
+                    </div>
+                </div>
+            </td>
+        </tr>
+	    <tr>
+               <th class="text-white"><h5>Status </h5></th>
+               <td>
+                   <div class="form-group">
+                    <input type=text pattern="[A-Za-z]{5,20}" required #status="ngModel" [class.is-invalid]="status.touched && status.invalid " name="status" class="form-control" [(ngModel)]="loanRequest.status">
+                    <div *ngIf="status.errors && status.touched">
+                            <small class="text-danger"    *ngIf="status.errors.required">Status is required</small>
+                            <small class="text-danger"     *ngIf="status.errors.pattern">Status must be atleast 5 characters</small>
+                    </div>
+                   </div>
+               </td>
+        </tr> 
+        <tr>
+            <td>
+                 <div class="form-group">
+                     <input type=submit value="InsertLoanRequest" [disabled]="create.invalid" class="btn btn-primary text-white" (click)="insertLoanRequest()">
+                 </div>
+            </td>
+            <td>
+                 <div class="form-group">
+                     <input type=submit value="GetLoanRequest" [disabled]="requestId.invalid" class="btn btn-primary text-white" (click)="getLoanRequest()">
+                 </div>
+            </td> 
+            <td><button type="submit" class="btn btn-info" (click)="showAllRequests()">ShowAllRequest</button></td>
+        </tr>        
+        <tr>
+            <td>
+                 <div class="form-group">
+                     <input type=submit value="DeleteLoanRequest"  [disabled]="requestId.invalid" class="btn btn-primary text-white" (click)="deleteLoanRequest()">
+                 </div>
+            </td>
+            <td>
+                 <div class="form-group">
+                      <input type=reset value="Cancel" class="btn btn-warning text-white">
+                 </div>
+            </td>
+        </tr>
+	    
+        </table>
+    </form>
+</div>
+        
+        

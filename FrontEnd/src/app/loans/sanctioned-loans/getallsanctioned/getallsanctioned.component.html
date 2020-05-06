@@ -1,0 +1,25 @@
+<div class="container" align=center>
+        <input type=button value="ShowSanctionedLoans" class="btn btn-info btn-lg" (click)="getAllSanctionedLoans()">
+        <table class="table table-dark">
+            <tr>
+              <th><h6>Sanction Id</h6></th>
+              <th><h6>Customer Id</h6></th>
+              <th><h6>Loan Id</h6></th>
+              <th><h6>Amount Sanctioned</h6></th>
+              <th><h6>Loan Emi</h6></th>
+              <th><h6>Loan Tenure</h6></th>
+              <th><h6>Issued Date</h6></th>
+              <th><h6>Status</h6></th>
+            </tr>
+           <tr *ngFor="let s of sanctionedLoansList">
+              <td>{{s.sanctionId}}</td>
+              <td>{{s.customer.customerId}}</td>
+              <td>{{s.loan.loanId}}</td>
+              <td>{{s.sanctionedAmount}}</td> 
+              <td>{{s.loanEmi}}</td>
+              <td>{{s.loanTenure}}</td>
+              <td>{{s.loanIssuedDate}}</td>
+              <td>{{s.status}}</td>
+            </tr>
+         </table>
+</div>
